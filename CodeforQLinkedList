@@ -1,0 +1,214 @@
+package newpackage;
+import java.util.Random;
+
+// A Linked List Node
+class Node
+{
+    int data;       // integer data
+    Node next;      // pointer to the next node
+ 
+    public Node(int data)
+    {
+        // set data in the allocated node and return it
+        this.data = data;
+        this.next = null;
+    }
+}
+ 
+class Queue
+{
+    private static Node rear = null, front = null;
+    private static int count = 0;
+ 
+    // Utility function to dequeue the front element
+    public static int dequeue()     // delete at the beginning
+    {
+        if (front == null)
+        {
+            System.out.println("\nQueue Underflow");
+            System.exit(-1);
+        }
+ 
+        Node temp = front;
+        //System.out.printf("Removing %d\n", temp.data);
+ 
+        // advance front to the next node
+        front = front.next;
+ 
+        // if the list becomes empty
+        if (front == null) {
+            rear = null;
+        }
+ 
+        // decrease the node's count by 1
+        count -= 1;
+ 
+        // return the removed item
+        return temp.data;
+    }
+ 
+    // Utility function to add an item to the queue
+    public static void enqueue(int item)     // insertion at the end
+    {
+        // allocate a new node in a heap
+        Node node = new Node(item);
+        //System.out.printf("Inserting %d\n", item);
+ 
+        // special case: queue was empty
+        if (front == null)
+        {
+            // initialize both front and rear
+            front = node;
+            rear = node;
+        }
+        else {
+            // update rear
+            rear.next = node;
+            rear = node;
+        }
+ 
+        // increase the node's count by 1
+        count += 1;
+    }
+ 
+    // Utility function to return the top element in a queue
+    public static int peek()
+    {
+        // check for an empty queue
+        if (front == null) {
+            System.exit(-1);
+        }
+ 
+        return front.data;
+    }
+ 
+    // Utility function to check if the queue is empty or not
+    public static boolean isEmpty() {
+        return rear == null && front == null;
+    }
+ 
+    // Function to return the size of the queue
+    public static int size() {
+        return count;
+    }
+}
+ 
+public class linkedlist_arr{
+    
+    public static void main(String[] args){
+        Queue q = new Queue();
+        Random r = new Random();
+             /*
+          //============STAGE 01===============//
+                for(int i=0 ;i<=2000;i++){
+                    
+                    long inTime = System.nanoTime(); //using System library
+                    //take the system time at this point
+                    //create random numbers, since it
+                    //will create negative numbers, a bound has been created,
+                    //which means it can generate numebrs form 0-50000 and equate to ele
+                    //which will be sent to the function
+                    q.enqueue(r.nextInt(50000000));
+                    long offTime = System.nanoTime(); // take the system time
+                    //at this point
+                    long totalTime = offTime - inTime; // calculate the time difference
+                   
+                    //System.out.println(totalTime); //record the time to the output
+                    
+                
+                }
+                
+                //============STAGE 02===============//
+                for(int i=0 ;i<=18000;i++){
+                    
+                    long inTime = System.nanoTime(); //using System library
+                    //take the system time at this point
+                    //create random numbers, since it
+                    //will create negative numbers, a bound has been created,
+                    //which means it can generate numebrs form 0-50000 and equate to ele
+                    //which will be sent to the function
+                    q.enqueue(r.nextInt(50000000));
+                    q.enqueue(r.nextInt(50000000));
+                    q.dequeue();
+                    long offTime = System.nanoTime(); // take the system time
+                    //at this point
+                    long totalTime = offTime - inTime; // calculate the time difference
+                   
+                   //System.out.println(totalTime); //record the time to the output
+                    
+                
+                }
+                
+                //============STAGE 03===============//
+                    for(int i=0 ;i<=20000;i++){
+                    
+                    long inTime = System.nanoTime(); //using System library
+                    //take the system time at this point
+                    //create random numbers, since it
+                    //will create negative numbers, a bound has been created,
+                    //which means it can generate numebrs form 0-50000 and equate to ele
+                    //which will be sent to the function
+                    
+                    q.dequeue();
+                    long offTime = System.nanoTime(); // take the system time
+                    //at this point
+                    long totalTime = offTime - inTime; // calculate the time difference
+                   
+                    System.out.println(totalTime); //record the time to the output
+                    }
+        */
+                    //============ STAGE - isFULL===============//
+                    for(int i=0 ;i<=20000;i++){
+                    
+                    long inTime = System.nanoTime(); //using System library
+                    //take the system time at this point
+                    //create random numbers, since it
+                    //will create negative numbers, a bound has been created,
+                    //which means it can generate numebrs form 0-50000 and equate to ele
+                    //which will be sent to the function
+                    q.enqueue(r.nextInt(500000000));
+                    //q.size();
+                    
+                    long offTime = System.nanoTime(); // take the system time
+                    //at this point
+                    long totalTime = offTime - inTime; // calculate the time difference
+                   
+                    //System.out.println(totalTime); //record the time to the output
+                    }
+                    
+                    //============ STAGE - isEmpty===============//
+                    for(int i=0 ;i<=20000;i++){
+                    
+                    long inTime = System.nanoTime(); //using System library
+                    //take the system time at this point
+                    //create random numbers, since it
+                    //will create negative numbers, a bound has been created,
+                    //which means it can generate numebrs form 0-50000 and equate to ele
+                    //which will be sent to the function
+                    q.dequeue();
+                    //q.size();
+                    
+                    long offTime = System.nanoTime(); // take the system time
+                    //at this point
+                    long totalTime = offTime - inTime; // calculate the time difference
+                   
+                    System.out.println(totalTime); //record the time to the output
+                    }
+       /*
+                           
+        //System.out.printf("The front element is %d\n", q.peek());
+        //q.enqueue(r.nextInt(50000000));
+        
+ 
+        if (q.isEmpty()) {
+            System.out.println("The queue is empty");
+        }
+        else {
+            System.out.println("The queue is not empty");
+            
+        }
+        */
+    }
+}
+
+    
